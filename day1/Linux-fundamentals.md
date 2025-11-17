@@ -27,6 +27,7 @@ Application software refers to programs designed to perform specific tasks for u
 
 [ Detail Note: Linux Architecture ](https://github.com/amitgiri-13/TechNotes/blob/main/Linux/UnderstandingLinux/general-purpose-linux-architecture.pdf)
 
+---
 
 ## Linux Distributions 
 
@@ -85,6 +86,8 @@ Designed for specific use cases, such as security, networking, privacy etc.
 
 [ Detail Note: Linux Distributions](https://github.com/amitgiri-13/TechNotes/blob/main/Linux/UnderstandingLinux/linux-distribution-explained.pdf)
 
+---
+
 ## Components of Linux
 
 | **Component**       | **Description** |
@@ -97,6 +100,7 @@ Designed for specific use cases, such as security, networking, privacy etc.
 | **Window Manager**  | The graphical interface layer that manages windows and desktop elements. Desktop environments like **GNOME**, **KDE**, **MATE**, **Unity**, and **Cinnamon** include tools such as file managers and web browsers. |
 | **Utilities**       | Programs and tools designed to perform specific tasks for users or other applications, ranging from file management to system monitoring. |
 
+---
 
 ## File System Hierarchy
 
@@ -123,86 +127,56 @@ Ever heard **Everything is a file** in Linux ?
 | **/usr** | Holds user applications, documentation, libraries, and other system resources. Much of the system’s software lives here. |
 | **/var** | Stores variable data such as logs, mail spools, databases, cache files, and web-related content—anything that tends to grow over time. |
 
+---
 ## The Shell
 
 A **shell** in Linux is a program that provides a command-line interface (CLI) between the user and the operating system. It processes the commands typed by the user, interprets them, and forwards them to the kernel for execution. Through the shell, users can run programs, manage files, and control various aspects of the system.
 
----
 
-## **Types of Shells in Linux**
+
+### Types of Shells in Linux
 
 Linux offers multiple shell environments, each with its own features and user experience:
 
-### **1. Bash (Bourne Again Shell)**
+#### **1. Bash (Bourne Again Shell)**
 - Default shell on many Linux distributions like Ubuntu, Fedora, and CentOS.  
 - Extends features from the original Bourne Shell (`sh`) and others like `csh` and `ksh`.  
 - Supports scripting, automation, command history, and tab completion.  
 - Highly flexible and widely used for writing shell scripts.
 
-### **2. Zsh (Z Shell)**
+#### **2. Zsh (Z Shell)**
 - A powerful and interactive shell with advanced features like extended globbing, syntax highlighting, and smart autocompletion.  
 - Highly customizable; often preferred by advanced users.  
 - Commonly paired with **Oh-My-Zsh** for added themes and plugins.
 
-### **3. Fish (Friendly Interactive Shell)**
-- Designed for simplicity and ease of use.  
-- Provides autosuggestions, syntax highlighting, and user-friendly features out of the box.  
-- Great for beginners, though not as script-compatible with POSIX as Bash.
+### Key Functions and Features of a Linux Shell
 
-### **4. Tcsh (TENEX C Shell)**
-- An improved version of the C Shell (`csh`).  
-- Adds command-line editing and auto-completion.  
-- Historically favored by users familiar with C-like syntax.
-
-### **5. Ksh (Korn Shell)**
-- A classic shell that supports both command execution and scripting.  
-- Includes features from both Bash and C Shell, such as job control and functions.
-
-### **6. Dash (Debian Almquist Shell)**
-- A fast and lightweight POSIX-compliant shell.  
-- Used by many Debian-based systems for system scripts due to its efficiency.
-
----
-
-## **Key Functions and Features of a Linux Shell**
-
-### **1. Command Interpretation**
-- The shell reads and interprets commands entered by the user.  
-- Identifies the appropriate program or utility for execution and communicates with the kernel.
-
-### **2. Command-Line Editing**
-- Users can navigate and edit previous commands using arrow keys and shortcuts.  
-- Bash (using `readline`) offers autocompletion, history navigation, and editing features.
-
-### **3. Scripting**
-- Shells can execute scripts: files containing a sequence of commands.  
-- Useful for automation tasks such as backups, system monitoring, and file management.
-
-### **4. Environment Variables**
-- The shell manages variables that store system and user-specific information.  
-  Common examples:  
-  - **PATH** – Directories searched for executable files  
-  - **HOME** – User's home directory  
-  - **USER** – Currently logged-in username  
-
-### **5. Input and Output Redirection**
-- Shells support redirection and piping to control data flow:  
-  - `>` or `>>` – Redirect command output to a file  
-  - `<` – Read input from a file  
-  - `|` – Send output of one command into another as input
-
-### **6. Job Control**
-- Allows managing foreground and background processes.  
-- Common commands:  
-  - `bg` – Resume a job in the background  
-  - `fg` – Bring a job to the foreground  
-  - `jobs` – List active jobs  
-
-### **7. Shell Prompt**
+#### 1. Shell Prompt
 - The shell displays a prompt indicating that it's ready to accept commands.  
 - Prompts can be customized to show details like username, hostname, or current directory.  
 - A common Bash prompt example:  
   ```bash
   user@hostname:~$
 
+#### 2. Command Interpretation
+- The shell reads and interprets commands entered by the user.  
+- Identifies the appropriate program or utility for execution and communicates with the kernel.
+  
+#### 3. Command-Line Editing
+- Users can navigate and edit previous commands using arrow keys and shortcuts.  
+- Bash (using `readline`) offers autocompletion, history navigation, and editing features.
+
+#### 4. Scripting
+- Shells can execute scripts: files containing a sequence of commands.  
+- Useful for automation tasks such as backups, system monitoring, and file management.
+
+#### 5. Environment Variables
+- The shell manages variables that store system and user-specific information.  
+  Common examples:  
+  - **PATH** – Directories searched for executable files  
+  - **HOME** – User's home directory  
+  - **USER** – Currently logged-in username  
+
 [Detail Note: Shell](https://github.com/amitgiri-13/TechNotes/blob/main/Linux/UnderstandingLinux/linux-shell-explained.pdf)
+
+---
