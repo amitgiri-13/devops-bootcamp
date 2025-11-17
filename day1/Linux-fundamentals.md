@@ -116,16 +116,18 @@ Ever heard **Everything is a file** in Linux ?
 | **/boot** | Contains the static bootloader files, the kernel image, and everything necessary to start the Linux system. |
 | **/dev** | Includes device files that act as interfaces to the hardware components connected to the machine. |
 | **/etc** | Houses system-wide configuration files, along with settings for various installed applications. |
-| **/home** | Keeps personal directories for all normal users, where they can store their files and data. |
 | **/lib** | Holds shared libraries essential for booting and running basic system programs. |
 | **/media** | Automatically used for mounting removable devices like USB drives and external disks. |
 | **/mnt** | A temporary location where administrators can manually mount additional filesystems. |
 | **/opt** | Used for optional or third-party software that doesn’t fit into the standard directory structure. |
-| **/root** | The home folder for the system’s root (superuser) account. |
-| **/sbin** | Contains system administration commands and binaries generally used by the root user. |
-| **/tmp** | Temporary workspace for the OS and applications to store short-lived files. This directory is often cleared during system reboot. |
-| **/usr** | Holds user applications, documentation, libraries, and other system resources. Much of the system’s software lives here. |
+| **/home** | Keeps personal directories for all normal users, where they can store their files and data. |
 | **/var** | Stores variable data such as logs, mail spools, databases, cache files, and web-related content—anything that tends to grow over time. |
+| **/usr** | Holds user applications, documentation, libraries, and other system resources. Much of the system’s software lives here. |
+| **/tmp** | Temporary workspace for the OS and applications to store short-lived files. This directory is often cleared during system reboot. |
+| **/sys** | System hardware information files are stored. |
+| **/proc** | Process directory, where current hardware and process information is stored. |
+| **/root** | The home folder for the system’s root (superuser) account. |
+| **/run** | Runtime data is held during system operation. |
 
 ---
 ## The Shell
