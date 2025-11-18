@@ -67,6 +67,10 @@ su -
 ```bash
 su <user_name>
 ```
+3. Exit
+```bash 
+exit
+``` 
 
 ---
 

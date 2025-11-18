@@ -54,6 +54,7 @@ After deployment, the software is monitored and updated. Bugs are fixed, new fea
 - Helps teams collaborate effectively  
 - Provides predictable timelines and milestones  
 
+---
 
 # SDLC Models
 
@@ -94,7 +95,7 @@ After deployment, the software is monitored and updated. Bugs are fixed, new fea
 ### **Cons**
 - Less predictable in terms of time and cost  
 - Requires an experienced and collaborative team  
-
+---
 ## Summary
 
 SDLC helps teams build software in a controlled, predictable, and organized way. It ensures that every step, from planning to maintenance is executed with purpose, reducing risks and improving software quality.
