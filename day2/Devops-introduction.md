@@ -47,9 +47,9 @@ Encourages teams to try new ideas, learn from failures, refine processes, and in
 
 ---
 
-## DevOps Metrics
+## DORA Metrics
 
-DevOps metrics are key data points that show how well a DevOps pipeline is performing. They help teams quickly identify bottlenecks, improve workflows, and enhance overall delivery efficiency. These metrics measure both technical performance and team processes.
+DORA (DevOps Research and Assessment) is a framework designed to evaluate and enhance software development and delivery performance. It provides metrics and insights that help teams understand how efficiently they deliver software, pinpoint bottlenecks, and identify opportunities for continuous improvement. Four DORA Metrics are:
 
 ###  Deployment Frequency  
   How often you deploy code to production.  
@@ -77,7 +77,7 @@ DevOps metrics are key data points that show how well a DevOps pipeline is perfo
 
 DevOps is a collaborative approach that unifies development and operations to streamline software delivery. It emphasizes automation, continuous integration, continuous delivery, rapid feedback, and ongoing improvement. The goal is to deliver high-quality software faster and more reliably.
 
-DevOps metrics help measure how effectively the DevOps process is performing. Key metrics such as deployment frequency, lead time for changes, change failure rate, and mean time to recovery highlight the speed, quality, and stability of software delivery. Tracking these metrics allows teams to identify bottlenecks, improve workflows, reduce failures, and ensure a resilient production environment.
+DORA metrics help measure how effectively the DevOps process is performing. Key metrics such as deployment frequency, lead time for changes, change failure rate, and mean time to recovery highlight the speed, quality, and stability of software delivery. Tracking these metrics allows teams to identify bottlenecks, improve workflows, reduce failures, and ensure a resilient production environment.
 
 ---
 
