@@ -56,6 +56,11 @@ Argument Specifies the target file, directory, or value that the command acts on
 
 ---
 
+## Let's echo 
+```bash
+echo "hello world"      # prints given string 
+````
+
 ## Switch Users
 
 1. Switch to root user
@@ -209,3 +214,141 @@ tar -xzvf archive_name.tar.gz
 
 ---
 
+## System Information and Monitoring
+
+1. Display Running Processes
+```bash
+top                 # display running processes and system usage in real-time
+ps                  # show current processes
+ps aux              # detailed list of all running processes
+```
+
+2. Check Disk Usage
+```bash
+df -h               # disk space usage readable format
+df -T               # show filesystem types and disk usage
+```
+
+3. Check Directory Size
+```bash
+du -h <dir>         # show directory size in readable format
+du -sh <dir>        # show total size of directory
+```
+
+4. Check Memory Usage
+```bash
+free  -h        # show memory usage in readable format
+```
+
+5. System Uptime
+```bash
+uptime -p      # uptime in pretty format
+```
+
+6. System Information
+```bash
+uname -a        # show system information
+uname -r        # kernel version
+```
+
+7. Current Logged-in User
+```bash
+whoami          # display the current user
+id              # shows user ID and group ID
+```
+
+8. Show Groups of a User
+```bash
+groups
+```
+---
+
+## Process Management
+
+1. Send Signal To Process
+```bash
+kill <pid>              # kill a process by process ID (default signal SIGTERM)
+kill -9 <pid>           # force kill (SIGKILL)
+kill 19 <pid>           # stop a process (SIGSTOP)
+kill -18 <pid>          # continue a stopped process (SIGCONT)
+```
+
+2. Background Jobs
+```bash
+jobs                    # list background/suspended jobs
+bg %[job number]        # resume a stopped job in background
+fg %[job number]        # bring job to foreground
+```
+
+---
+
+## File Permissions Management
+
+![alt text](images/fileperm1.png)
+
+
+![alt text](images/fileperm2.png) 
+
+1. Change Permission
+```bash 
+chmod 400 <file>            # only owner can read file
+chmod 777 <file>            # read, write, and execute for owner, group and others
+chmod -R 400 <directory>    # apply permissions to all files and sub-directories
+```
+
+2. Change Owner and Group
+```bash
+sudo chown user:group <file>          # change user and group of file
+sudo chown -R user:group <directory>  # change ownership recursively for all files in a directory
+```
+---
+
+## Networking
+
+1. Download Data With curl and wget
+```bash
+curl <url>                  # view content of webpage in terminal
+curl <url> -O <file_name>   # download and save with a specific name
+
+wget <https://example.com/file.txt> # download a file
+wget <https://example.com/file.txt> -O <file_name> # download and save with a specific name
+wget -r <https://example.com/folder/>  # download recursively
+```
+
+2. Get IP Address and Network Interfaces
+```bash
+ip addr show
+```
+
+3. Check Host Reachablility
+```bash
+ping <ip or DNS name>   # check connectivity with ICMV requests
+
+nc -zv <ip> <port>      # scan for open ports
+
+telnet example.com      # check connectivity on default telnet port 23
+telnet example.com 80   # connect ot specific port
+
+```
+
+4. DNS Query
+```bash
+dig example.com     # query a record
+
+nslookup example.com            # query a record
+nslookup example.com 8.8.8.8    # query using a specific DNS server
+```
+
+5. SSH Connection
+```bash
+ssh  user@host_ip       
+ssh -i <key.pem>    user@host_ip    # specify key file with -i 
+```
+
+6. Copy File To and From Remote Server Over SSH
+```bash
+scp -i <key.pem>    <source_file>  user@host_ip:/destination/path    # copy file to remote server
+
+scp -i <key.pem>    user@host_ip:/source/file   <destination>        # copy file from remote server
+```
+---
