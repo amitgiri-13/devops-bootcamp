@@ -11,9 +11,8 @@ rw-rw-r-- for files)
 - Commands
 
 ```bash
-sudo chown root:devteam  /var/www/project/source
-sudo chmod 760 /var/www/project/source  
-sudo chmod g+s /var/www/project/source
+sudo chown -R root:devteam /var/www/project/source
+sudo chmod 2770 /var/www/project/source
 ```
 - Output
 ![alt text](images/task3a.png)
@@ -29,8 +28,7 @@ sudo chmod g+s /var/www/project/source
 
 ```bash
 sudo chown root:devteam /var/www/project/logs
-sudo chmod 660 /var/www/project/logs
-sudo chmod +t /var/www/project/logs
+sudo chmod 1775 /var/www/project/logs
 ```
 - Output
 
@@ -47,8 +45,8 @@ sudo chmod +t /var/www/project/logs
 
 ```bash
 sudo chown deploy:deployers /var/www/project/scripts/deploy.sh
-sudo chmod 710 /var/www/project/scripts/deploy.sh
-sudo chmod u+s /var/www/project/scripts/deploy.sh
+sudo chmod 4750 /var/www/project/scripts/deploy.sh
+
 ```
 - Output
 ![alt text](images/task3c.png)
@@ -65,8 +63,7 @@ automatically
 
 ```bash
 sudo chown root:devteam /var/www/project/shared
-sudo chmod 660 /var/www/project/shared
-sudo chmod g+s /var/www/project/shared
+sudo chmod 2775 /var/www/project/shared
 ```
 - Output
 ![alt text](images/task3d.png)
