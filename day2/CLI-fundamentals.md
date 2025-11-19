@@ -217,6 +217,8 @@ tar -czvf archive_name.tar.gz <files_or_directories>
 
 tar -xzvf archive_name.tar.gz  
 # -x: extract, -z: decompress gzip, -v: verbose, -f: file
+
+rsync -avz /source /destination                 # sync with compression and archive mode
 ``` 
 
 ---
@@ -291,6 +293,8 @@ fg %[job number]        # bring job to foreground
 
 ## File Permissions Management
 
+*Be cautious while performing these operations*
+
 ![alt text](images/fileperm1.png)
 
 
@@ -362,6 +366,8 @@ scp -i <key.pem>    user@host_ip:/source/file   <destination>        # copy file
 
 ## Package Management
 
+*Be cautious while performing these operations*
+
 Learn based on the distro used.
 
 1. **pacman** For Arch Based
@@ -410,4 +416,105 @@ dnf list installed              # list installed packages
 sudo dnf clean all              # clean cache
 ```
 
+---
+
+## User Management
+
+*Be cautious while performing these operations*
+
+1. Add User
+```bash
+sudo useradd -m -d /home/<username> -s /bin/bash -c "User Full Name" <username>
+# -m → creates home directory
+# -d → specify home directory
+# -s → default shell
+# -c → comment / full-name field
+```
+
+2. Change Password
+```bash
+sudo passwd <username>
+sudo passwd -e <username>  # force change in next login
+```
+
+3. Modify User
+```bash
+sudo usermod -d /new/home/dir -m <username>     # change home directory
+sudo usermod -aG <groupname> <username>         # add user to group
+sudo usermod -s /bin/zsh <username>             # change login shell
+```
+
+4. Delete User
+```bash
+sudo userdel <username>
+sudo userdel -r <username>          # delete user and home directory
+```
+
+5. Add Group
+```bash
+sudo groupadd <groupname>
+```
+
+6. Delete Group
+```bash
+sudo groupdel <groupname>
+```
+
+---
+
+## Disk Management
+
+*Be cautious while performing these operations*
+
+**Workflow**
+
+**Identify Disk -> Create Partitions (optional) -> Create Filesystem -> Mount -> Use -> Unmount**
+
+1. List Block Devices
+```bash
+lsblk
+```
+
+2. List Disks and Partitions
+```bash
+sudo fdisk -l                   # list all disks and partitions
+sudo fdisk -l /dev/sdX          # list partitions of a disk
+``` 
+
+3. Create Partitions
+
+
+Be cautious ! if it's first time try with a experimental external disk.
+```bash
+sudo fdisk /dev/sdX                     # open disk in fdisk interactive mode
+m  # show help
+p  # show partition table
+n  # create new partition
+d  # delete a partition
+t  # change partition type
+L  # view known partition type
+w  # write changes to disk
+q  # quit without saving
+```
+
+4. Create a Filesystem
+```bash
+sudo sudo mkfs.ext4 /dev/sdX1               # ext4 filesystem
+sudo mkfs.vfat -F 32 /dev/sdX1              # fat32 filsystem
+sudo mkfs.xfs /dev/sdX1                     # xfs filesystem
+```
+
+5. Mount and Unmount Disk
+```bash
+sudo mount /dev/sdX1 /mnt                   # mount /dev/sdX1 in /mnt directory
+sudo umount /dev/sdX1                       # unmount /dev/sdX1
+#or
+sudo umount /mnt    
+```
+
+6. Check and Repair Filesystem
+```bash
+sudo fsck /dev/sdX1                    # check filesystem
+sudo fsck -y /dev/sdX1                 # auto repair filesystem
+```
 ---
