@@ -37,9 +37,16 @@ user@host:$
 
 ## General Command Structure
 
+Let's see general command structure.
 ```bash
-command [options..] [arguments..]
+command                                         # just command
+command [options..]                             # command with option/s
+command [arguments..]                           # command with argument/s
+command [option=value]                          # options may take values                 
+command [options..] [arguments..]               # command with options and arguments
+command subcommand [options..] [arguments..]    # command may have subcommands
 ```
+The command structure can get complex, with time we get used to it.
 
 ### Command
 
@@ -351,4 +358,56 @@ scp -i <key.pem>    <source_file>  user@host_ip:/destination/path    # copy file
 
 scp -i <key.pem>    user@host_ip:/source/file   <destination>        # copy file from remote server
 ```
+---
+
+## Package Management
+
+Learn based on the distro used.
+
+1. **pacman** For Arch Based
+```bash
+sudo pacman -Suy            # update system
+sudo pacman -S <package>    # install package
+suod pacman -R <package>    # remove package 
+sudo pacman -Rns <package>  # remove package with unused dependencies and configs
+sudo pacman -Ss  <keyword>  # search for package
+sudo pacman -Q              # list all packages installed
+suod pacman -Scc            # remove all cache
+```
+
+2. ***apt** For Debian/Ubuntu Based 
+```bash
+sudo apt update                 # update package database
+sudo apt upgrade                # upgrade installed packages
+sudo apt full-update            # handles dependency changes
+sudo apt install <package>      # install package
+sudo apt remove <package>       # remove package
+sudo apt purge   <package>      # remove package with config files
+sudo apt autoremove             # remove unused dependencies
+apt search <keyword>            # search for package
+apt list --installed            # list packages
+sudo apt autoclean              # remove all cache
+```
+
+3. **yum** For RHEL/CentOS/Fedora
+```bash
+sudo yum ckeck-update           # check for updates
+sudo yum update                 # update packages
+sudo yum install <package>      # install package
+sudo yum remove <package>       # remove package
+yum search <keyword>            # search packages
+yum list installed              # list installed packages
+sudo yum clean all              # clean cache
+```
+
+4. **dnf** For RHEL/CentOS/Fedora
+```bash
+sudo dnf update                 # update packages
+sudo dnf install <package>      # install pckages
+sudo dnf remove <package>       # remove packages
+dnf search <keyword>            # search packages
+dnf list installed              # list installed packages
+sudo dnf clean all              # clean cache
+```
+
 ---
