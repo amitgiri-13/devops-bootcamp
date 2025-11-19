@@ -26,7 +26,7 @@ Given as average **3 hours** from commit to production.
 ---
 
 ## 3. Change Failure Rate (%)
-Change Failure Rate = Deployments causing incidents / Total deployments * 100 = 6 /40 * 100 = 15% \]
+Change Failure Rate = ( Deployments causing incidents / Total deployments ) * 100 = 6 /40 * 100 = 15% 
 
 ---
 
@@ -52,10 +52,10 @@ MTTR = 12.75 / 6 = 2.125 hours
 
 | Metric                  | Value          | Elite                | High                 | Medium               | Low                  |
 |-------------------------|----------------|----------------------|----------------------|----------------------|----------------------|
-| Deployment Frequency     | 2 per day      | Multiple per day      | Daily                | Between weekly/monthly| Less than monthly    |
+| Deployment Frequency     | 2 per day      | Multiple per day      | Daily                | Between weekly/monthly| yearly or more    |
 | Lead Time for Changes    | 3 hours       | <1 hour              | 1 day                | 1 week               | >1 month             |
 | Change Failure Rate (%)  | 15%            | 0-15%                | 16-30%               | 31-45%               | >45%                 |
-| MTTR                    | 2.125 hours    | <1 hour              | <1 day               | <1 week              | >1 week              |
+| MTTR                     | 2.125 hours    | <1 hour              | <1 day               | <1 week              | >1 week              |
 
 ---
 
