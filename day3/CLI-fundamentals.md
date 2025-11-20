@@ -33,3 +33,7 @@ sudo chmod +t <filename>              # sticky bit on file
 sudo chmod +t <dir>                   # sticky bit on directory
 ```
 ---
+
+![alt text](images/stickytable.png)
+
+---
