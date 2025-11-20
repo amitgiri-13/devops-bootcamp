@@ -418,6 +418,8 @@ sudo dnf clean all              # clean cache
 
 ---
 
+
+
 ## User Management
 
 *Be cautious while performing these operations*
@@ -483,7 +485,6 @@ sudo fdisk -l /dev/sdX          # list partitions of a disk
 
 3. Create Partitions
 
-
 Be cautious ! if it's first time try with a experimental external disk.
 ```bash
 sudo fdisk /dev/sdX                     # open disk in fdisk interactive mode
@@ -518,3 +519,4 @@ sudo fsck /dev/sdX1                    # check filesystem
 sudo fsck -y /dev/sdX1                 # auto repair filesystem
 ```
 ---
+
