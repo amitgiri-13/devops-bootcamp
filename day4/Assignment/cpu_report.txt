@@ -1,8 +1,0 @@
-
-Date: 2025-11-20 19:51
-PID	%CPU	COMMAND
-392501	4.4	/app/lib/firefox/firefox-bin
-
-Date: 2025-11-20 19:52
-PID	%CPU	COMMAND
-392501	4.1	/app/lib/firefox/firefox-bin
