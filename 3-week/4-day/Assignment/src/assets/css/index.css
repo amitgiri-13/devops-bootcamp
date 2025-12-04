@@ -1,0 +1,346 @@
+/* ===================================
+   Amit Giri – Portfolio CSS (2025)
+   Clean, Modern, Responsive Dark Theme
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  background: #0d1117;
+  color: #e6edf3;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================================
+   Layout Helpers
+   =================================== */
+.container {
+  width: min(90%, 1200px);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+/* ===================================
+   Header & Navigation
+   =================================== */
+header {
+  padding: 2rem 0;
+  position: sticky;
+  top: 0;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  border-bottom: 1px solid #30363d;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  list-style: none;
+}
+
+nav a {
+  color: #8b949e;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 50%;
+  background: #58a6ff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover {
+  color: #58a6ff;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===================================
+   Hero / Bio Section
+   =================================== */
+#bio {
+  padding-top: 3rem;
+  padding-bottom: 7rem;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 4rem;
+  align-items: center;
+}
+
+.profile-info h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #58a6ff, #8b949e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.profile-info p {
+  font-size: 1.4rem;
+  color: #8b949e;
+  margin-bottom: 2.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: #238636;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2ea043;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #58a6ff;
+  border: 2px solid #58a6ff;
+}
+
+.btn-secondary:hover {
+  background: #58a6ff22;
+  transform: translateY(-3px);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-links a {
+  color: #8b949e;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #58a6ff;
+  border-color: #58a6ff;
+  transform: translateY(-4px);
+}
+
+.profile-image img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 20px;
+}
+
+/* ===================================
+   Grid Cards (Skills, Education, Projects)
+   =================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.8rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #58a6ff;
+  box-shadow: 0 10px 25px rgba(88, 166, 255, 0.15);
+}
+
+.card img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  filter: grayscale(30%);
+}
+
+.card p {
+  font-size: 1.15rem;
+  color: #e6edf3;
+}
+
+.education-card,
+.project-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.education-card:hover,
+.project-card:hover:not(.disabled) {
+  background: #21262d;
+}
+
+.project-card.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Section Headings */
+h2 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #238636;
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+/* ===================================
+   Associations
+   =================================== */
+.associations {
+  background: #161b22;
+  padding: 4rem 0;
+  text-align: center;
+  border-top: 1px solid #30363d;
+}
+
+.association-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.association-grid img {
+  height: 60px;
+  filter: brightness(0.9);
+  transition: all 0.3s ease;
+}
+
+.association-grid img:hover {
+  filter: brightness(1) drop-shadow(0 0 15px #58a6ff);
+  transform: scale(1.15);
+}
+
+/* ===================================
+   Footer
+   =================================== */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: #8b949e;
+  font-size: 0.95rem;
+  border-top: 1px solid #30363d;
+  margin-top: auto;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 968px) {
+  .profile {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .profile-info h1 {
+    font-size: 3.2rem;
+  }
+
+  .profile-image {
+    order: -1;
+  }
+
+  nav ul {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 2.3rem;
+  }
+
+  .profile-info h1 {
+    font-size: 2.8rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .association-grid {
+    gap: 2.5rem;
+  }
+}
