@@ -1,0 +1,6 @@
+services:
+  web:
+    image: portfolio:1.0
+    container_name: myportfolio
+    ports:
+      - "84:80"
