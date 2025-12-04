@@ -1,0 +1,9 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: mycont
+    ports:
+      - 84:80
+    volumes:
+      - ./src:/var/www/html
+      - ./config/nginx_custom.conf:/etc/nginx/conf.d/custom.conf
