@@ -69,4 +69,33 @@ docker compose up -d
 docker compose down
 ```
 ![alt text](images/cleanup.png)
+
 ---
+
+8. **Pushing image to repository** 
+```bash
+# Tagging image
+docker tag portfolio:1.0 amitgiri13/myportfolio:1.0
+
+# Pushing image
+docker push amitgiri13/myportfolio:1.0
+```
+---
+9. **Local images cleanup**
+```bash
+docker rmi portfolio:1.0
+docker rmi amitgiri13/myportfolio:1.0
+```
+---
+10. **Pulling and running to test**
+```bash
+# Pulling image
+docker pull amitgiri13/myportfolio:1.0
+
+# Running container with images
+docker run --name myport -p 85:80 -d amitgiri13/myportfolio:1.0
+```
+
+![alt text](images/testing.png)
+---
+
