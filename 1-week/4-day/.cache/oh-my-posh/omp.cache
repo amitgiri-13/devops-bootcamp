@@ -1,0 +1,12 @@
+{
+    "environment_platform": {
+        "value": "arch",
+        "timestamp": 1763741371,
+        "ttl": -1
+    },
+    "is_wsl": {
+        "value": "false",
+        "timestamp": 1763741371,
+        "ttl": -1
+    }
+}

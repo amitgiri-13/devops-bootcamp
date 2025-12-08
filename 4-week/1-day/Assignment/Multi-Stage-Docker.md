@@ -137,7 +137,7 @@ docker build -t msd-image:1.0.1 .
 
 ---
 
-8. **Running container**
+11. **Running container**
 ```bash
 docker run --name mycont1 -p 83:80 msd-image:1.0.1
 ```
@@ -145,3 +145,16 @@ docker run --name mycont1 -p 83:80 msd-image:1.0.1
 
 ---
 
+12. **Pushing image to Repository**
+```bash
+# tagging images
+docker tag msd-image:1.0.0 amitgiri13/multi-stage-docker:1.0.0
+docker tag msd-image:1.0.1 amitgiri13/multi-stage-docker:1.0.1
+
+# pushing images
+docker push amitgiri13/multi-stage-docker:1.0.0
+docker push amitgiri13/multi-stage-docker:1.0.1
+```
+
+![alt text](images/pushmsd.png)
+---
