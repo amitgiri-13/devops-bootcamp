@@ -1,0 +1,45 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for secure S3 bucket provisioning"
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: "Bucket name must be globally unique"
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+      VersioningConfiguration:
+        Status: Enabled
+
+      Tags:
+        - Key: "Env"
+          Value: "Lab"
+
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: "AES256"
+              
+Outputs:
+  BucketName:
+    Description: "S3 Bucket Name"
+    Value: !Ref S3Bucket
+
+  BucketArn:
+    Description: "S3 Bucket Arn"
+    Value: !GetAtt S3Bucket.Arn
