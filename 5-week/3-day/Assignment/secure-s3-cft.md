@@ -1,3 +1,25 @@
+# Task 1: Write a CFT for provisioning a S3 Bucket (AWS). Make it as secure as possible.
+
+## Secure S3 Architecture 
+![alt text](images/secures3.drawio.png)
+
+--- 
+
+## Design Summary
+
+- Security-first architecture
+- Separation of data and logs
+- Encryption at rest
+- TLS enforcement
+- Public access blocked
+- Versioning enabled
+- Audit logs preserved on stack deletion
+
+---
+
+## CFT: secure-s3.yaml
+
+```bash
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >
@@ -88,7 +110,6 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
 
-
   SecureDataBucketPolicy:
     Type: AWS::S3::BucketPolicy
 
@@ -117,3 +138,34 @@ Outputs:
   LogsBucket:
     Description: S3 bucket storing access logs
     Value: !Ref AccessLogsBucket
+```
+---
+
+## CFT Report
+
+![alt text](images/report1.png)
+
+![alt text](images/report2.png)
+
+![alt text](images/report3.png)
+
+
+
+---
+
+## Deploy CFT
+
+```bash
+aws cloudformation deploy --template-file secure-s3.yaml \
+ --stack-name secure-s3 \
+ --capabilities CAPABILITY_NAMED_IAM \
+ --parameter-overrides DataBucketName=adexsecurebucket9890 LogsBucketName=adexlogsbucket9890
+```
+
+---
+
+## Output 
+
+![alt text](images/cftresources.png)
+
+![alt text](images/cftoutput.png)
