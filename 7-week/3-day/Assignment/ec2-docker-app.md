@@ -1,8 +1,8 @@
 # Task: Write a CI/CD in GitHub Actions that triggers when code is changed in your repo. It should build a docker image and deploy that in EC2.
 
-[View Code: ](https://github.com/amitgiri-13/cicd-docker-ec2)
+[View Code ](https://github.com/amitgiri-13/cicd-docker-ec2)
 
-## Directory structure
+## 1. Directory structure
 
 ```bash
 .
@@ -13,12 +13,53 @@
 ├── docker-compose.yaml
 ├── Dockerfile
 ├── requirements.txt
-└── terraform/
+└── terraform/  # optional for dev infra provisioning
 ```
 
 ---
 
-## Code 
+## 2. Provision Infrastructure
+
+- i. Create EC2 with docker installed using terraform
+```bash
+# change directory
+cd terraform
+
+# plan
+terraform plan
+# apply
+terraform apply
+# get output
+terraform output
+```
+
+- ii. Set up env file for docker containers
+```bash
+# ssh connection
+ssh -i key.pem server_user@server_ip 
+
+# add env file
+mkdir ~/.env
+touch ~/.env/dev_env 
+---
+``` 
+
+- ii. Example ~/.env/dev_env file 
+```bash
+# App image (replace with your actual image name and tag)
+APP_IMAGE=amitgiri13/manage-members:latest
+
+# Database image
+DATABASE_IMAGE=postgres:15
+
+# Postgres environment variables
+POSTGRES_USER=user123
+POSTGRES_PASSWORD=pass123
+POSTGRES_DB=my_db
+```
+---
+
+## 3. Code 
 
 ### Dockerfile
 
@@ -41,32 +82,36 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```bash
 services:
   app:
-    build: .
+    image: ${APP_IMAGE}
+    env_file:
+      - ./.env/dev_env
     container_name: bootcamp_app
     ports:
       - "80:8000"
     restart: always
     environment:
-      POSTGRES_USER: bootcamp
-      POSTGRES_PASSWORD: bootcamp123
-      POSTGRES_DB: bootcamp_db
-      POSTGRES_HOST: db
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     depends_on:
       - db
 
   db:
-    image: postgres:15
+    image: ${DATABASE_IMAGE}
+    env_file:
+      - ./.env/dev_env
     container_name: bootcamp_db
     restart: always
     environment:
-      POSTGRES_USER: bootcamp
-      POSTGRES_PASSWORD: bootcamp123
-      POSTGRES_DB: bootcamp_db
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
+
 ```
 ---
 
@@ -81,6 +126,7 @@ on:
   push:
     branches:
       - main
+      
 
 jobs:
   deploy-my-code:
@@ -88,66 +134,84 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SERVER_IP: ${{ vars.SERVER_IP }}
+      SERVER_USER: ${{ vars.SERVER_USER }}
+      DOCKER_HUB_USER: ${{ vars.DOCKER_USER }}
+      DOCKER_HUB_REPO: ${{ vars.DOCKER_REPO }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      
+      - name: Set up TAG
+        run: |
+          echo "TAG=latest" >> $GITHUB_ENV
 
-      - name: Configure SSH
+      - name: Set up Docker Buildx 
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Dockerhub
+        run: |
+          echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u $DOCKER_HUB_USER --password-stdin
+
+      - name: Build Docker image
+        run: |
+          docker build -t "$DOCKER_HUB_USER/$DOCKER_HUB_REPO:$TAG" .
+
+      - name: Push Docker image
+        run: | 
+          docker push "$DOCKER_HUB_USER/$DOCKER_HUB_REPO:$TAG"
+
+      - name: Set up for SSH connection
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-          chmod 600 ~/.ssh/config
+          chmod 600 ~/.ssh/config 
+
+      - name: Add private key for ssh 
+        run: |
+          echo "$SSH_KEY64" | base64 -d >> mykey.pem
+          chmod 400 mykey.pem 
           touch ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-
-      - name: Setup SSH key
-        run: |
-          echo "$SSH_KEY64" | base64 -d > mykey.pem
-          chmod 400 mykey.pem
           ssh-keygen -R $SERVER_IP
-        env:
+        env: 
           SSH_KEY64: ${{ secrets.SSH_KEY64 }}
-
-      - name: Pull code and run Docker container
+      
+      - name: Copy docker-compose file
         run: |
-          ssh  ubuntu@$SERVER_IP -i mykey.pem << 'EOF'
-            APP_DIR="member-manager"
-            REPO_URL="https://github.com/amitgiri-13/cicd-docker-ec2.git"
-
-            # Check if repo exists
-            if [ -d ~/$APP_DIR/.git ]; then
-              echo "Repo exists. Pulling latest changes..."
-              cd ~/$APP_DIR
-              git reset --hard
-              git pull origin main
-            else
-              echo "Repo doesn't exist. Cloning..."
-              git clone $REPO_URL $APP_DIR
-              cd ~/$APP_DIR
-            fi
-
-            # Build and run Docker containers
-            docker compose pull
-            docker compose up -d --build
-          EOF
+          scp -i mykey.pem ./docker-compose.yaml $SERVER_USER@$SERVER_IP:~/
+      
+      - name: Make ssh connection, pull and run docker image
+        run: |
+          ssh -i mykey.pem $SERVER_USER@$SERVER_IP "
+          docker compose --env-file ./.env/dev_env pull
+          docker compose --env-file ./.env/dev_env down
+          docker compose --env-file ./.env/dev_env up -d
+          "
 ```
 
-## Setup variables and secretes
+## 4. Setup variables and secretes
 
-- secretes
+- i. secretes
+  - SSH_KEY64 : base 64 encoded private key to make ssh connection with ec2
+  - DOCKER_HUB_PASSWORD: docker hub token with read and write access 
 
-![alt text](images/secretes.png)
+![alt text](images/secrets.png)
 
-- variables
+
+
+- ii. variables
+  - DOCKER_REPO: Docke hub repository
+  - DOCKER_USER: Docker hub user
+  - SERVER_IP: ip of ec2
+  - SERVER_USER: user of ec2
 
 ![alt text](images/variables.png)
 
 
-## Output 
+## 5. Output 
 
 ![alt text](images/output.png)
 
